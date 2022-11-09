@@ -4,17 +4,6 @@ set -e
 
 echo "Making sure smoke test passes and we can build a distribution tarball ..."
 
-set -x
-./gradlew clean check distTar
-
-if ! ./gradlew jmh; then
-    set +x
-    echo "WARNING: ./gradlew jmh seems to be broken" >&2
-else
-    set +x
-    echo "Everything looks good."
-fi
-
 if [[ "{{cookiecutter.version_control}}" == "git" ]]; then
     set +x
     echo "Initializing git repo"
